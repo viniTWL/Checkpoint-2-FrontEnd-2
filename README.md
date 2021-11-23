@@ -28,6 +28,7 @@
 
                                                                       ENTREGA:
 Devem ser entregues os arquivos HTML5, CSS3 e Javascript do projeto via Git/Github. Você deverá enviar o link do repositório por este formulário: https://forms.gle/CFCEmSgYeFBKXyL16 
+
 Data de entrega: 03/12/2021
 
 
