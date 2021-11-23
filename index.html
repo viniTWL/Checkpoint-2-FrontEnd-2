@@ -11,6 +11,23 @@
     <script src="todo.js" defer></script>
 </head>
 <body>
+    <main>
+        <header></header>
+        <form action="#">
+
+            <label for="tarefa">Tarefa:</label>
+            <input type="text" required class="tarefa" name="tarefa" id="tarefa">
+
+            <label for="datalimite">Término da tarefa</label>
+            <input type="date" required name="datalimite" id="datalimite">
+
+            <label for="description">Descrição</label>
+            <input type="text" name="description" id="description" placeholder="Descrição" minlength="10">
+
+            <button type="submit" class="btnSub" id="btnSub">Adicionar Tarefa</button>
+        </form>
+
+    </main>
     
 </body>
 </html>
