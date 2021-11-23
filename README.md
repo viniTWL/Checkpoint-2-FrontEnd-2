@@ -1,5 +1,5 @@
 # Checkpoint-2-FrontEnd-2
- Segundo Checkpoint de Front-End 2 do Certified Tech Developer
+ Segundo Checkpoint de Front-End 2 do Certified Tech Developer - *TO-DO LIST*
 
 	
 1 - A primeira página deve ter um formulário com os inputs: 
