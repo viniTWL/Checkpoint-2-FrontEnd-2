@@ -26,7 +26,7 @@
 - Nas tarefas onde o atributo “completed": false” o texto do atributo title deve estar em negrito. Pois significa que a tarefa está a fazer. 
 - Exiba também o conteúdo do atributo “id”.
 
-                                                                        ENTREGA:
+                                                                      ENTREGA:
 Devem ser entregues os arquivos HTML5, CSS3 e Javascript do projeto via Git/Github. Você deverá enviar o link do repositório por este formulário: https://forms.gle/CFCEmSgYeFBKXyL16 
 Data de entrega: 03/12/2021
 
