@@ -5,29 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 
-    <link rel="stylesheet" href="style/style.css">
-
-    <script src="todo.js" defer></script>
+    
 </head>
 <body>
     <main>
-        <header></header>
-        <form action="#">
+        <div>
+        <header>
+            <h1>Gerenciador de tarefas</h1>
+        </header>
+        </div>
+    </main>
 
-            <label for="tarefa">Tarefa:</label>
-            <input type="text" required class="tarefa" name="tarefa" id="tarefa">
+    <main>
+        <div class="to-do-tasks">
 
-            <label for="datalimite">Término da tarefa</label>
-            <input type="date" required name="datalimite" id="datalimite">
+            <form class="form-container">
+                <div>
+                    <label for="tarefa-ini">Início:</label>
+                    </div>
+                <div>
+                    <input type="date" required name="datainicial">
+                    </div>
+                <div>
+                    <label for="tarefa-fim">Conclusão:</label>
+                    </div>
+                <div>
+                    <input type="date" required name="datafinal">
+                    </div>
 
-            <label for="description">Descrição</label>
-            <input type="text" name="description" id="description" placeholder="Descrição" minlength="10">
+                <div>
+                    <label for="description">Descrição</label>
+                    </div>
 
-            <button type="submit" class="btnSub" id="btnSub">Adicionar Tarefa</button>
-        </form>
+                <div>
+                    <textarea type="text" placeholder="Digite sua tarefa" minlength="10"></textarea>
+                    </div>
+                                
+                    <button class="button button2">Adicionar</button>
+                 
+             </form>    
+
+        </div>
 
     </main>
-    
+
+    <script src="todo.js"></script>   
 </body>
 </html>

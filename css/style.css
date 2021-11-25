@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  background-color:rgba(86, 88, 88, 0.541);
+
+}
+
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(40, 160, 168);
+  border-radius: 0.8rem;
+  box-shadow: 5px 5px 25px #222222;
+  color: white;
+  padding:3rem;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  min-width: 40%;
+}
+
+
+.to-do-tasks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+
+.btn-sub {
+  color: #444141;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding:0.6rem;
+  border-radius: 1.3rem;
+}
+
+.btn-sub :hover {
+  background: #9affe9;
+  color: #ffffff;
+}
