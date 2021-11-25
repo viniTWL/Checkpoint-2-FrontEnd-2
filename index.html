@@ -22,32 +22,29 @@
         <div class="to-do-tasks">
 
             <form class="form-container">
-                <div>
-                    <label for="tarefa-ini">Início:</label>
-                    </div>
-                <div>
-                    <input type="date" required name="datainicial">
-                    </div>
-                <div>
-                    <label for="tarefa-fim">Conclusão:</label>
-                    </div>
-                <div>
-                    <input type="date" required name="datafinal">
-                    </div>
 
                 <div>
                     <label for="description">Descrição</label>
-                    </div>
+                </div>
 
                 <div>
-                    <textarea type="text" placeholder="Digite uma nova tarefa" minlength="10"></textarea>
-                    </div>
-                                
-                    <button class="button button2">Adicionar</button>
+                    <textarea type="text" id="tarefa" placeholder="Digite uma nova tarefa" minlength="10"></textarea>
+                </div>
+
+                <div>
+                    <label for="tarefa">Conclusão:</label>
+                </div>
+
+                <div>
+                    <input type="date" id="datalimite" required name="datafinal">
+                </div>
+
+                <button class="btnSubmit" id="btnSubmit">Adicionar</button>
                  
-             </form>    
+             </form>
 
         </div>
+        <ul class="list" id="list"></ul>
 
     </main>
 
