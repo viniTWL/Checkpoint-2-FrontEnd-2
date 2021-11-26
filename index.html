@@ -24,19 +24,19 @@
             <form class="form-container">
 
                 <div>
-                    <label for="description">Descrição</label>
+                    <label for="descricao">Tarefa:</label>
                 </div>
 
                 <div>
-                    <textarea type="text" id="tarefa" placeholder="Digite uma nova tarefa" minlength="10"></textarea>
+                    <input type="text" id="descricao" name="descricao" placeholder="Digite uma nova tarefa" minlength="10"></input>
                 </div>
 
                 <div>
-                    <label for="tarefa">Conclusão:</label>
+                    <label for="datalimite">Conclusão:</label>
                 </div>
 
                 <div>
-                    <input type="date" id="datalimite" required name="datafinal">
+                    <input type="date" id="datalimite" required name="datalimite">
                 </div>
 
                 <button class="btnSubmit" id="btnSubmit">Adicionar</button>
@@ -44,7 +44,10 @@
              </form>
 
         </div>
-        <ul class="list" id="list"></ul>
+
+        <div class="tasks">
+            <ul class="lista" id="lista"></ul>
+        </div>
 
     </main>
 
