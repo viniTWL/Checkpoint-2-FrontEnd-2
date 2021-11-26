@@ -66,3 +66,7 @@ header {
   background: #9affe9;
   color: #ffffff;
 }
+
+.item > input[type= 'checkbox']:checked + p {
+  text-decoration: line-through;
+}
