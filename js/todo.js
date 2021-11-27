@@ -87,6 +87,7 @@ btnSub.addEventListener('click', submit => {
     //Removendo os espaços em branco da tarefa
     const removeSpace = description.value.replace(/\s+/g, '')
 
+    // Condicionais
     let verify;
 
     if(dataLimite.value == '' || removeSpace == ''){
@@ -102,9 +103,9 @@ btnSub.addEventListener('click', submit => {
             verify = false;
     }else{
         description.style.border = '1px solid'
-        verify = true;
     }
 
+    // Se as informações passarem pela validação, cria-se a tarefa
     if(verify){
         newTask()
     }
