@@ -2,15 +2,9 @@
 
 let atualDate = () => {
     data = new Date();
-    let today = data.getFullYear() +'-'+ (data.getMonth() + 1)  +'-'+ data.getDate();
+    let today = '0' + data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear();
     return today;
  }
-
-// Assim que a página inicia, a data limite do formulário é setada para a data atual
-
-window.addEventListener('DOMContentLoaded', function() {
-    dataLimite.min = atualDate();
-});
 
 // Selecionando os inputs do form
 
@@ -19,6 +13,14 @@ const dataLimite = document.querySelector('#datalimite');
 const description = document.querySelector('#descricao');
 const list = document.querySelector('#lista');
 const tasks = document.querySelector('.tasks');
+
+// Assim que a página inicia, a data limite do formulário é setada para a data atual
+
+window.addEventListener('DOMContentLoaded', function() {
+    data = new Date();
+    let today = data.getFullYear() +'-'+ (data.getMonth() + 1)  +'-'+ 0 + data.getDate();
+    dataLimite.setAttribute('min', today)
+ });
 
  // Função que cria uma nova tarefa, cria os elementos e os coloca nos respectivos parents.
 
@@ -37,17 +39,22 @@ const tasks = document.querySelector('.tasks');
     title.innerText = `Tarefa: ${description.value}`
 
     const dateCreated = document.createElement('p')
-    dateCreated.innerText = `Data de Criação: ${atualDate()}`
+    dateCreated.innerText = `Criado em: ${atualDate()}`
 
     const dateSet = document.createElement('p')
-    dateSet.innerText = `Data de Término: ${dataLimite.value}`;
+    dataNew = new Date(dataLimite.value)
+    dataFormat = dataNew.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+    dateSet.innerText = `Terminar em: ${dataFormat}`;
 
     const btDel = document.createElement('button')
+    const i = document.createElement('i')
     btDel.classList.add('delete')
-    btDel.innerText = 'EXCLUIR'
+    btDel.appendChild(i)
+    i.classList = "fas fa-trash"
 
     const checkbox = document.createElement('input')
     checkbox.type = 'checkbox';
+    checkbox.classList = 'checkbox';
 
     list.appendChild(todo)
     todo.appendChild(li)
@@ -98,16 +105,18 @@ btnSub.addEventListener('click', submit => {
     }
 
     if(removeSpace.length <= 10 || removeSpace == ''){
-            description.style.border = '3px solid red'
+            description.style.borderBottomColor = 'red';
             alert('A descrição deve ter pelo menos 10 caracteres')
             verify = false;
     }else{
-        description.style.border = '1px solid'
+        description.style.borderBottomColor = 'white'
     }
 
     // Se as informações passarem pela validação, cria-se a tarefa
     if(verify){
         newTask()
+        description.value = '';
+        dataLimite.value = '';
     }
 
 })

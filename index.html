@@ -7,16 +7,15 @@
     <title>To-Do List</title>
     <link rel="stylesheet" href="./css/style.css">
 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
-    <main>
         <div>
         <header>
-            <h1>Gerenciador de tarefas</h1>
+            <h1>Lista de Coisas a Fazer</h1>
         </header>
         </div>
-    </main>
 
     <main>
         <div class="to-do-tasks">
@@ -39,15 +38,17 @@
                     <input type="date" id="datalimite" name="datalimite">
                 </div>
 
-                <button class="btnSubmit" id="btnSubmit">Adicionar</button>
+                <button class="btnSubmit" id="btnSubmit">
+                    <i class="fa fa-plus square"></i>
+                </button>
                  
-             </form>
+            </form>
 
         </div>
-
         <div class="tasks">
             <ul class="lista" id="lista"></ul>
         </div>
+
 
     </main>
 
