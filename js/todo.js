@@ -135,18 +135,3 @@ let excluirAll = () => {
   }
 }
 
-// Funções para a tela de consumo da api
-let consumirApi = () => {
-  
-  let url = 'https://jsonplaceholder.typicode.com/todos/';
-  
-  fetch(url) // Busca a URL
-  .then(result => result.json()) // Transformar em JSON
-  .then(json => consumirJson(json)); // Manda pra função que consome o JSON
-}
-
-let consumirJson = (json) => {
-  for (i = 0; i < json.length; i++) { // Laço de repetição para criar cada card
-    criaCard(json[i]['id'], json[i]['title'], null, null, json[i]['completed']);
-  }
-}
