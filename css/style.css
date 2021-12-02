@@ -80,6 +80,24 @@ input {
   background: #891a1a;
 }
 
+.select-all-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-color{
+  background-color: #242323;
+  color: white;
+  border-style: none;
+  width: 130px ;
+  height: 30px;
+  text-transform: uppercase;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 #lista{
   display: flex;
   align-items: center;
