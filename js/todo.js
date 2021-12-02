@@ -1,122 +1,131 @@
-// Função que pega a data atual e formata com o padrão ISO
+let dataAtual = () => {
+  data = new Date();
 
-let atualDate = () => {
-    data = new Date();
-    let today = '0' + data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear();
-    return today;
- }
+  let y = data.getFullYear();
+  let m = data.getMonth() + 1; // GetMonth retorna o mês iniciando o contador em 0, por isso getMonth + 1
+  let d = ('0' + data.getDate()).length == 3 ? data.getDate() : '0' + data.getDate(); // (IF TERNÁRIO) Verifica se o dia já passou de 9 para não acrescentar 0 a partir do dia 10
 
-// Selecionando os inputs do form
+  return y + '-' + m + '-' + d
+}
 
-const btnSub = document.querySelector('#btnSubmit');
-const dataLimite = document.querySelector('#datalimite');
-const description = document.querySelector('#descricao');
-const list = document.querySelector('#lista');
-const tasks = document.querySelector('.tasks');
+// Chama as funções que validam o form
+let validate = () => {
+  document.querySelector('#validacoes').innerHTML = ""; // Limpa o campo de erros da página
 
-// Assim que a página inicia, a data limite do formulário é setada para a data atual
+  verificaInputVazio('#dataLimite', 'Data Limite');
+  validaInputDataFutura('#dataLimite', 'Data Limite');
 
-window.addEventListener('DOMContentLoaded', function() {
-    data = new Date();
-    let today = data.getFullYear() +'-'+ (data.getMonth() + 1)  +'-'+ 0 + data.getDate();
-    dataLimite.setAttribute('min', today)
- });
+  verificaInputVazio('#descricao', 'Descrição');
+  verificaCaracteresInput('#descricao', 'Descrição', 10);
 
- // Função que cria uma nova tarefa, cria os elementos e os coloca nos respectivos parents.
-
- let newTask = () => {
-
-    const todo = document.createElement('div');
-    todo.classList.add('todo');
-
-    const li = document.createElement('li')
-    li.classList.add('task')
-
-    const label = document.createElement('label')
-    label.classList.add('item')
-
-    const title = document.createElement('p')
-    title.innerText = `Tarefa: ${description.value}`
-
-    const dateCreated = document.createElement('p')
-    dateCreated.innerText = `Criado em: ${atualDate()}`
-
-    const dateSet = document.createElement('p')
-    dataNew = new Date(dataLimite.value)
-    dataFormat = dataNew.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
-    dateSet.innerText = `Terminar em: ${dataFormat}`;
-
-    const btDel = document.createElement('button')
-    const i = document.createElement('i')
-    btDel.classList.add('delete')
-    btDel.appendChild(i)
-    i.classList = "fas fa-trash"
-
-    const checkbox = document.createElement('input')
-    checkbox.type = 'checkbox';
-    checkbox.classList = 'checkbox';
-
-    list.appendChild(todo)
-    todo.appendChild(li)
-    li.appendChild(label)
-    label.appendChild(checkbox)
-    label.appendChild(title)
-    label.appendChild(dateCreated)
-    label.appendChild(dateSet)
-    label.appendChild(btDel)
+  if (document.querySelector('#validacoes').innerHTML == '') { // Se após as validações o campo de erro ainda estiver vazio, pode seguir com a inclusão do card
+    criaCard(null, document.querySelector('#descricao').value, document.querySelector('#dataCriacao').value, document.querySelector('#dataLimite').value, false);
     
+    limpaForm();
+  }
 }
 
-// Função que deleta a tarefa selecionada, abre-se uma tela de confirmação para confirmar a exclusão.
-
-let deleteTask = (element) => {
-
-    const item = element.target
-
-    if(item.classList[0] === 'delete'){
-        opc = confirm('Deseja excluir a tarefa?')
-        if(opc){
-        const task = item.parentElement
-        task.remove()
-        }
-    }
+// Verifica se o campo está vazio
+let verificaInputVazio = (input, name) => {
+  if (document.querySelector(input).value == '') { // Se o campo estiver vazio
+    document.querySelector(input).classList.add('error'); // Adiciona uma classe de erro no input
+    document.querySelector('#validacoes').append(name + ' não pode estar vazio. '); // Adiciona a mensagem no campo para erros do formulário na página
+  } else {
+    document.querySelector(input).classList.remove('error'); // Remove a classe de erro do input
+  }
 }
 
-tasks.addEventListener('click', deleteTask);
+// Verifica se no input tem a quantidade de caracteres informada
+let verificaCaracteresInput = (input, name, caracteres) => {
+  if (document.querySelector(input).value.length < caracteres) { // Se o numero de caracteres no input for menor que os caracteres informado
+    document.querySelector(input).classList.add('error'); // Adiciona uma classe de erro no input
+    document.querySelector('#validacoes').append(name + ' não pode ter menos de ' + caracteres + ' caracteres. '); // Adiciona a mensagem no campo para erros do formulário na página
+  } else {
+    document.querySelector(input).classList.remove('error'); // Remove a classe de erro do input
+  }
+}
 
-// Evento do botão submit, veriica-se se os campos estão em branco, se a tarefa tem mesno de 10 caracteres
-// Se sim, mensagem de erro, se não, cria a tarefa com a função newTask.
+// Verifica a data informada é igual a hoje ou futura
+let validaInputDataFutura = (input, name) => {
+  let hoje = dataAtual().replace(/-/g, ""); // Executa a função que retorna a data atual, e remove todos os "-"
+  let dataInformada = document.querySelector(input).value.replace(/-/g, ""); // Remove todos os "-" da data informada
 
-btnSub.addEventListener('click', submit => {
+  if (dataInformada < hoje) { // Se a data informada for menor do que hoje
+    document.querySelector(input).classList.add('error'); // Adiciona uma classe de erro no input
+    document.querySelector('#validacoes').append(name + ' deve ser maior que hoje. '); // Adiciona a mensagem no campo para erros do formulário na página
+  } else {
+    document.querySelector(input).classList.remove('error'); // Remove a classe de erro do input
+  }
+}
 
-    submit.preventDefault();
+// Atribuir a data atual no input de data inicial ao carregar a página
+window.onload = function() {
+  if (document.querySelector('#dataCriacao') != null) {
+    let hoje = dataAtual(); // Executa a função que retorna a data atual
+    document.querySelector('#dataCriacao').value = hoje; // Atribui a data atual no input de data de criação
+  }
+}
 
-    //Removendo os espaços em branco da tarefa
-    const removeSpace = description.value.replace(/\s+/g, '')
+let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {  
+  if (id == null) {
+    var id = document.getElementsByClassName('card').length + 1; // Adiciona mais 1 a conta de cards existentes na tela para atribuir um id único para o card que vai ser adicionado
+  }
+  
+  card = "<div id='card" + id + "' class='card'>";
 
-    // Condicionais
-    let verify;
+  if (completed != false) {
+    card += "<input type='checkbox' class='checkbox' checked>";
+  } else {
+    card += "<input type='checkbox' class='checkbox'>";
+  }
+  
+  card += "<p>" + id + ". " + descricao + "</p>";
 
-    if(dataLimite.value == '' || removeSpace == ''){
-        alert('Preencha todos os campos!')
-        verify = false;
-    }else{
-        verify = true;
-    }
+  if (dataInicio == null) {
+    var dataInicio = dataAtual();
+  }
+  card += "<p>Data de Criação: " + dataInicio + "</p>";
 
-    if(removeSpace.length <= 10 || removeSpace == ''){
-            description.style.borderBottomColor = 'red';
-            alert('A descrição deve ter pelo menos 10 caracteres')
-            verify = false;
-    }else{
-        description.style.borderBottomColor = 'white'
-    }
+  if (dataLimite != null) {
+    card += "<p>Data Limite: " + dataLimite + "</p>";
+  } else {
+    card += "<p>Data Limite: Não informada</p>";
+  }
 
-    // Se as informações passarem pela validação, cria-se a tarefa
-    if(verify){
-        newTask()
-        description.value = '';
-        dataLimite.value = '';
-    }
+  card += "<button onClick='excluirCard(\"#card" + id + "\")' class='excluir'><i class='fas fa-trash'></i></button>";
+  card += "</div>";
+  
+  document.querySelector('#lista').innerHTML = card + document.querySelector('#lista').innerHTML; // Adiciona o card no inicio da tela
+}
 
-})
+let excluirCard = (id) => {
+  let confirmed = confirm('Deseja excluir a tarefa?'); // Confirmação da exclusão
+  
+  if (confirmed) {
+    document.querySelector(id).remove(); // Remover card da lista
+  }
+}
+
+// Limpa os valores do form
+let limpaForm = () => {
+  document.querySelector('#dataLimite').value = '';
+  document.querySelector('#descricao').value = '';
+
+  document.querySelector('#validacoes').innerHTML = ''; // Limpa os erros de validação na tela
+}
+
+// Funções para a tela de consumo da api
+let consumirApi = () => {
+  
+  let url = 'https://jsonplaceholder.typicode.com/todos/';
+  
+  fetch(url) // Busca a URL
+  .then(result => result.json()) // Transformar em JSON
+  .then(json => consumirJson(json)); // Manda pra função que consome o JSON
+}
+
+let consumirJson = (json) => {
+  for (i = 0; i < json.length; i++) { // Laço de repetição para criar cada card
+    criaCard(json[i]['id'], json[i]['title'], null, null, json[i]['completed']);
+  }
+}

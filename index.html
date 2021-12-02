@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="./css/style.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <body>
+  <header>
+    <h1>Gerenciador de tarefas</h1>
+  </header>
+
+  <main>
+    <div class="funcoes">
+      <form class="form-container">
         <div>
-        <header>
-            <h1>Lista de Coisas a Fazer</h1>
-        </header>
+          <label for="dataCriacao">Início:</label>
+          <input type="date" id="dataCriacao" name="dataCriacao" disabled required>
         </div>
 
-    <main>
-        <div class="to-do-tasks">
-
-            <form class="form-container">
-
-                <div>
-                    <label for="descricao">Tarefa:</label>
-                </div>
-
-                <div>
-                    <input type="text" id="descricao" name="descricao" class="descricao" placeholder="Digite uma nova tarefa" minlength="10"></input>
-                </div>
-
-                <div>
-                    <label for="datalimite">Conclusão:</label>
-                </div>
-
-                <div>
-                    <input type="date" id="datalimite" name="datalimite">
-                </div>
-
-                <button class="btnSubmit" id="btnSubmit">
-                    <i class="fa fa-plus square"></i>
-                </button>
-                 
-            </form>
-
+        <div>
+          <label for="dataLimite">Conclusão:</label>
+          <input type="date" id="dataLimite" name="dataLimite" required>
         </div>
-        <div class="tasks">
-            <ul class="lista" id="lista"></ul>
+        
+        <div>
+          <label for="descricao">Título:</label>
+          <input type="text" id="descricao" name="descricao" class="descricao" placeholder="Titulo da tarefa" minlength="10" required></input>
         </div>
 
+        <submit type="button" class="btnSubmit" id="btnSubmit" onClick="validate()">Adicionar Tarefa</submit>
 
-    </main>
+        <p id="validacoes"></p>
+      </form>
+      
+      <button type="button" class="btnConsumirApi" id="btnConsumirApi" onClick="consumirApi()">Consumir API</i></button>
+    </div>
 
-    <script src="./js/todo.js"></script>   
+    <div id="lista"></div>
+  </main>
+
+  <script src="js/todo.js"></script>   
 </body>
 </html>
