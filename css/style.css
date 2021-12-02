@@ -18,7 +18,7 @@ h1 {
 header {
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
+  padding: 1.5rem;
 }
 
 .funcoes {
@@ -38,7 +38,6 @@ header {
   font-weight: lighter;
   padding: 2rem 0;
   font-size: 1rem;
-  margin-top: 2rem;
   width: 100%;
 }
 

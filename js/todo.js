@@ -114,6 +114,27 @@ let limpaForm = () => {
   document.querySelector('#validacoes').innerHTML = ''; // Limpa os erros de validação na tela
 }
 
+// Excluir todas as tarefas
+
+let excluirAll = () => {
+  let confirmed = confirm('Deseja excluir as tarefas não concluídas também?');
+  
+  let qtCards = document.querySelectorAll(".card").length;
+  
+  if (confirmed) {
+    for (i = 0; i < qtCards; i++) {
+      document.querySelector(".card").remove();
+    } 
+  } else {
+      for (i = 0; i < qtCards; i++) {
+      if (document.getElementsByClassName("card")[i] != undefined && document.getElementsByClassName("card")[i].getElementsByTagName('input')[0].checked) {
+        document.getElementsByClassName("card")[i].remove();
+        i--;
+      }
+    } 
+  }
+}
+
 // Funções para a tela de consumo da api
 let consumirApi = () => {
   
