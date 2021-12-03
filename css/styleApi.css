@@ -9,13 +9,46 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem;
-  font-weight: bolder;
-  font-size: 2.4rem;
-  color: #6c0000;
+
+.row {
+  margin: 0;
+}
+
+.container {
+  padding: 70px 0;
+}
+
+p, li {
+  color: #444;
+  font-size: 14px;
+}
+
+header, .navbar {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: white;
+}
+
+#logo {
+  width: 130px;
+}
+
+.navbar-brand {
+  padding: 0;
+  color: #222;
+}
+
+.navbar-brand:hover {
+  color: #222;
+}
+
+#navbar-links a {
+  color: #222;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 1rem .8rem;
 }
 
 .funcoes {
@@ -23,6 +56,18 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.box-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  padding: 6.5rem 0;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .btnSubmit, .btnConsumirApi{
@@ -118,21 +163,29 @@ input[type= 'checkbox'] {
   margin-right: 10px;
 }
 
-ul{
-  margin-right: 3rem;
-  list-style: none;
-  display: flex;
-  gap: 3rem;
-  text-decoration: none;
-}
-
-ul li a{
-  text-decoration: none;
-  font-size: 20px;
-}
-
-ul li:hover {
+#home-menu:hover {
   color: #6c0000;
   transform: scale(1.25);
   transition: all 250ms ease-in-out;
+}
+
+#import-menu:hover {
+  color: #6c0000;
+  transform: scale(1.25);
+  transition: all 250ms ease-in-out;
+}
+
+.row  { 
+  color: white;
+  position: relative; 
+  bottom:0;
+  
+}
+
+footer  {
+  display: flex;
+  justify-content: center;
+  color: white;
+
+
 }
