@@ -16,10 +16,11 @@ body {
 .container {
   padding: 70px 0;
 }
-p, li {
-  color: #444;
-  font-size: 14px;
 
+
+p li {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
 }
 
 header, .navbar {
@@ -151,6 +152,7 @@ input[type= 'checkbox'] {
 .card p {
   color: white !important;
   font-weight: lighter;
+  font-size: 20px;
 }
 
 .excluir{
@@ -167,7 +169,7 @@ input[type= 'checkbox'] {
 }
 
 #validacoes {
-  font-size: 0.8rem;
+  font-size: 0.99rem;
   font-weight: normal;
   padding: 5px;
   margin-top: 10px;
@@ -211,4 +213,8 @@ footer  {
   justify-content: center;
   color: white;
   
+}
+
+.footerp{
+  color: black;
 }

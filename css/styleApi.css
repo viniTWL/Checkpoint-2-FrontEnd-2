@@ -20,7 +20,7 @@ body {
 
 p, li {
   color: #444;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 header, .navbar {
@@ -140,6 +140,7 @@ input[type= 'checkbox'] {
 .card p {
   color: white !important;
   font-weight: lighter;
+  font-size: 20px;
 }
 
 .excluir{
@@ -186,6 +187,4 @@ footer  {
   display: flex;
   justify-content: center;
   color: white;
-
-
 }
