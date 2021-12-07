@@ -85,32 +85,63 @@ let dataAtual = () => {
   }
   
   let excluirCard = (id) => {
-    let confirmed = confirm('Deseja excluir a tarefa?'); // Confirmação da exclusão
-    
-    if (confirmed) {
-      document.querySelector(id).remove(); // Remover card da lista
+    Swal.fire({
+    title: 'Tem certeza que deseja excluir a tarefa?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, desejo excluir!',
+    cancelButtonText: 'Não'
+  }).then((result) => {
+    if (result.isConfirmed) { // Confirmação da exclusão
+      document.querySelector(id).remove() //Exclui o card
+      Swal.fire(
+        'Excluído!',
+        'Sua tarefa foi excluída',
+        'success'
+      )
     }
+  })
   }
   
   // Excluir todas as tarefas
   
   let excluirAll = () => {
-    let confirmed = confirm('Deseja excluir as tarefas não concluídas também?');
-    
-    let qtCards = document.querySelectorAll(".card").length;
-    
-    if (confirmed) {
-      for (i = 0; i < qtCards; i++) {
-        document.querySelector(".card").remove();
-      } 
-    } else {
+    Swal.fire({
+      title: 'Deseja excluir as tarefas não marcadas também?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluit todas!',
+      cancelButtonText: 'Não, apenas as marcadas'
+    }).then((result) => {
+      let qtCards = document.querySelectorAll(".card").length;
+      if (result.isConfirmed) { // Confirmação da exclusão
+        for (i = 0; i < qtCards; i++) {
+          document.querySelector(".card").remove();
+        } 
+        Swal.fire(
+          'Tarefas Excluídas!',
+          'Todas as tarefas foram exclúidas',
+          'success'
+        )
+      }
+      else {
         for (i = 0; i < qtCards; i++) {
         if (document.getElementsByClassName("card")[i] != undefined && document.getElementsByClassName("card")[i].getElementsByTagName('input')[0].checked) {
           document.getElementsByClassName("card")[i].remove();
           i--;
         }
+        Swal.fire(
+          'Tarefas Excluídas!',
+          'As tarefas marcadas foram excluídas',
+          'success'
+        )
       } 
     }
+    })
   }
   
   // Funções para a tela de consumo da api
