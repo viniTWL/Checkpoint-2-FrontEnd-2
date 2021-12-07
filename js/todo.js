@@ -98,12 +98,27 @@ let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
   document.querySelector('#lista').innerHTML = card + document.querySelector('#lista').innerHTML; // Adiciona o card no inicio da tela
 }
 
+// Utilizando biblioteca sweetalert2
+
 let excluirCard = (id) => {
-  let confirmed = confirm('Deseja excluir a tarefa?'); // Confirmação da exclusão
-  
-  if (confirmed) {
-    document.querySelector(id).remove(); // Remover card da lista
+  Swal.fire({
+  title: 'Tem certeza que deseja excluir a tarefa?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sim, desejo excluir!',
+  cancelButtonText: 'Não'
+}).then((result) => {
+  if (result.isConfirmed) { // Confirmação da exclusão
+    document.querySelector(id).remove() //Exclui o card
+    Swal.fire(
+      'Excluído!',
+      'Sua tarefa foi excluída',
+      'success'
+    )
   }
+})
 }
 
 // Limpa os valores do form
