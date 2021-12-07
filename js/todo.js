@@ -1,12 +1,6 @@
-let dataAtual = () => {
-  data = new Date();
-
-  let y = data.getFullYear();
-  let m = data.getMonth() + 1; // GetMonth retorna o mês iniciando o contador em 0, por isso getMonth + 1
-  let d = ('0' + data.getDate()).length == 3 ? data.getDate() : '0' + data.getDate(); // (IF TERNÁRIO) Verifica se o dia já passou de 9 para não acrescentar 0 a partir do dia 10
-
-  return y + '-' + m + '-' + d
-}
+//Pegamdp a data atual e formatando-a
+const dataAtual = dayjs().format('YYYY-MM-DD');
+document.querySelector('#dataCriacao').setAttribute('value', dataAtual);
 
 // Chama as funções que validam o form
 let validate = () => {
@@ -47,10 +41,9 @@ let verificaCaracteresInput = (input, name, caracteres) => {
 
 // Verifica a data informada é igual a hoje ou futura
 let validaInputDataFutura = (input, name) => {
-  let hoje = dataAtual().replace(/-/g, ""); // Executa a função que retorna a data atual, e remove todos os "-"
-  let dataInformada = document.querySelector(input).value.replace(/-/g, ""); // Remove todos os "-" da data informada
+  let dataInformada = document.querySelector(input).value //Remove todos os "-" da data informada
 
-  if (dataInformada < hoje) { // Se a data informada for menor do que hoje
+  if (dataInformada < dataAtual) { // Se a data informada for menor do que hoje
     document.querySelector(input).classList.add('error'); // Adiciona uma classe de erro no input
     document.querySelector('#validacoes').append(name + ' deve ser maior que hoje. '); // Adiciona a mensagem no campo para erros do formulário na página
   } else {
@@ -61,8 +54,7 @@ let validaInputDataFutura = (input, name) => {
 // Atribuir a data atual no input de data inicial ao carregar a página
 window.onload = function() {
   if (document.querySelector('#dataCriacao') != null) {
-    let hoje = dataAtual(); // Executa a função que retorna a data atual
-    document.querySelector('#dataCriacao').value = hoje; // Atribui a data atual no input de data de criação
+    document.querySelector('#dataCriacao').value = dataAtual; // Atribui a data atual no input de data de criação
   }
 }
 
@@ -82,12 +74,12 @@ let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
   card += "<p>" + id + ". " + descricao + "</p>";
 
   if (dataInicio == null) {
-    var dataInicio = dataAtual();
+    var dataInicio = dataAtual;
   }
-  card += "<p>Data de Criação: " + dataInicio + "</p>";
+  card += "<p>Data de Criação: " + dayjs(dataInicio).format(' DD / MM / YYYY') + "</p>";
 
   if (dataLimite != null) {
-    card += "<p>Data Limite: " + dataLimite + "</p>";
+    card += "<p>Data Limite: " + dayjs(dataLimite).format(' DD / MM / YYYY') + "</p>";
   } else {
     card += "<p>Data Limite: Não informada</p>";
   }
