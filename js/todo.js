@@ -58,12 +58,22 @@ window.onload = function() {
   }
 }
 
-let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {  
+// Muda a classe 
+let changeClass = () =>{
+  let carta = document.querySelectorAll('.card.animate')
+  for (i = 0; i < carta.length; i++){
+    console.log(carta[i])
+   carta[i].setAttribute('class', 'card')
+  }
+}
+
+let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
+  changeClass()
   if (id == null) {
     var id = document.getElementsByClassName('card').length + 1; // Adiciona mais 1 a conta de cards existentes na tela para atribuir um id único para o card que vai ser adicionado
   }
   
-  card = "<div id='card" + id + "' class='card'>";
+  card = "<div id='card" + id + "' class='card animate'>";
 
   if (completed != false) {
     card += "<input type='checkbox' class='checkbox' checked>";
@@ -71,7 +81,7 @@ let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
     card += "<input type='checkbox' class='checkbox'>";
   }
   
-  card += "<p>" + id + ". " + descricao + "</p>";
+  card += "<p>" + descricao + "</p>";
 
   if (dataInicio == null) {
     var dataInicio = dataAtual;
@@ -86,6 +96,7 @@ let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
 
   card += "<button onClick='excluirCard(\"#card" + id + "\")' class='excluir'><i class='fas fa-trash'></i></button>";
   card += "</div>";
+
   
   document.querySelector('#lista').innerHTML = card + document.querySelector('#lista').innerHTML; // Adiciona o card no inicio da tela
 }
@@ -93,7 +104,7 @@ let criaCard = (id, descricao, dataInicio, dataLimite, completed) => {
 // Utilizando biblioteca sweetalert2
 
 let excluirCard = (id) => {
-  Swal.fire({
+  Swal.fire({  //Confirm true or false
   title: 'Tem certeza que deseja excluir a tarefa?',
   icon: 'warning',
   showCancelButton: true,
@@ -141,4 +152,3 @@ let excluirAll = () => {
     } 
   }
 }
-

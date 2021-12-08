@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+  --primary-color: #1B1E24;
+  --secondary-color: #1B1E24;
+  --font-color: #1B1E24;
+  --bg-color: #fff;
+  --heading-color: #1B1E24;
+}
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'lato', sans-serif; line-height:1.2; vertical-align:middle;
 }
 
 .row {
@@ -218,4 +225,32 @@ footer  {
 
 .footerp{
   color: black;
+}
+
+.card.animate {
+  -webkit-animation : fly-in .3s .5s ease both;
+  -moz-animation    : fly-in .3s .5s ease both;
+  -o-animation      : fly-in .3s .5s ease both;
+  animation         : fly-in .3s .5s ease both;
+}
+
+@-webkit-keyframes fly-in {
+  from {
+    -webkit-transform :translateY(15rem) rotate(15deg);
+    transform         :translateY(15rem) rotate(15deg);
+    opacity:0;
+  }
+}
+@-moz-keyframes fly-in {
+  from {
+    -moz-transform :translateY(15rem) rotate(15deg);
+    transform      :translateY(15rem) rotate(15deg);
+    opacity:0;
+  }
+}
+@keyframes fly-in {
+  from {
+    transform:translateY(15rem) rotate(15deg);
+    opacity:0;
+  }
 }
